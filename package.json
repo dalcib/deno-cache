@@ -1,7 +1,7 @@
 {
   "name": "deno-cache",
-  "version": "0.1.0",
-  "description": "[![Tags](https://img.shields.io/github/release/denosaurs/cache)](https://github.com/denosaurs/cache/releases) [![CI Status](https://img.shields.io/github/workflow/status/denosaurs/cache/check)](https://github.com/denosaurs/cache/actions) [![Dependencies](https://img.shields.io/github/workflow/status/denosaurs/cache/depsbot?label=dependencies)](https://github.com/denosaurs/depsbot) [![License](https://img.shields.io/github/license/denosaurs/cache)](https://github.com/denosaurs/cache/blob/master/LICENSE)",
+  "version": "0.1.1",
+  "description": "A port of the cache module of Deno to be used with nodejs",
   "main": "lib/mod.ts",
   "type": "module",
   "scripts": {
