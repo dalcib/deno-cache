@@ -1,0 +1,11 @@
+{
+  "deno.enable": false,
+  "eslint.enable": false,
+  "jest.rootPath": "./",
+  "filewatcher.commands": [
+    {
+      "target": "/**/*.js",
+      "task": "test"
+    }
+  ]
+}

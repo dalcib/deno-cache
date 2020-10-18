@@ -1,0 +1,29 @@
+{
+  "name": "deno-cache",
+  "version": "0.1.0",
+  "description": "[![Tags](https://img.shields.io/github/release/denosaurs/cache)](https://github.com/denosaurs/cache/releases) [![CI Status](https://img.shields.io/github/workflow/status/denosaurs/cache/check)](https://github.com/denosaurs/cache/actions) [![Dependencies](https://img.shields.io/github/workflow/status/denosaurs/cache/depsbot?label=dependencies)](https://github.com/denosaurs/depsbot) [![License](https://img.shields.io/github/license/denosaurs/cache)](https://github.com/denosaurs/cache/blob/master/LICENSE)",
+  "main": "lib/mod.ts",
+  "type": "module",
+  "scripts": {
+    "test": "node test/run-test test",
+    "build": "esbuild --outdir=lib --platform=node src/*.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dalcib/deno-cache.git"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dalcib/deno-cache/issues"
+  },
+  "homepage": "https://github.com/dalcib/deno-cache#readme",
+  "dependencies": {
+    "@types/node": "^14.11.8",
+    "@types/node-fetch": "^2.5.7",
+    "node-fetch": "^2.6.1"
+  },
+  "devDependencies": {
+    "esbuild": "^0.7.17"
+  }
+}

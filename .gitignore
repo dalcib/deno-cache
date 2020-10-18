@@ -1,0 +1,8 @@
+# IDE
+node_modules
+
+# macOS files
+.DS_Store
+
+# test cache
+cache
