@@ -41,7 +41,7 @@ export function tmpdir(): string {
   const env = (variable) => process.env[variable] //Deno.env.get
   const os = platform() //Deno.build.os
 
-  let tmp = env('TMPDIR') ?? env('TEMP') ?? env('TMP')
+  const tmp = env('TMPDIR') ?? env('TEMP') ?? env('TMP')
   if (tmp) return resolve(tmp)
 
   switch (os) {

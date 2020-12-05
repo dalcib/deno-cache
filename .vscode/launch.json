@@ -5,6 +5,15 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Launch Test",
+      "program": "${workspaceFolder}/test/run-test.js",
+      "args": ["test"],
+      "request": "launch",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "pwa-node"
+    },
+
+    {
       "type": "node",
       "request": "launch",
       "name": "Launch Program",

@@ -1,4 +1,4 @@
-import fs from 'fs/promises'
+import * as fs from 'fs/promises'
 import { join, exists as _exists } from './deps.js'
 import { cachedir } from './directories.js'
 import { File, FileWrapper, Origin, Policy, RELOAD_POLICY } from './file.js'
@@ -18,8 +18,8 @@ export class Wrapper {
     this.#namespace = ns
   }
 
-  async fetch(url: string | URL, policy?: Policy): Promise<File> {
-    return await fetch(url, policy, this.#namespace)
+  async cache(url: string | URL, policy?: Policy): Promise<File> {
+    return await cache(url, policy, this.#namespace)
   }
 
   async remove(url: string | URL): Promise<boolean> {
@@ -59,7 +59,7 @@ export function directory(): string {
   return options.directory ?? cachedir()
 }
 
-export async function fetch(url: string | URL, policy?: Policy, ns?: string): Promise<File> {
+export async function cache(url: string | URL, policy?: Policy, ns?: string): Promise<File> {
   const wrapper = new FileWrapper(toURL(url), policy, ns)
   return await wrapper.get()
 }

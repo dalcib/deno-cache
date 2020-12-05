@@ -1,9 +1,8 @@
-import fs from 'fs/promises'
+import * as fs from 'fs/promises'
 import { StatsBase } from 'fs'
 import { createHash, dirname, ensureDir, exists, join, resolve, extname } from './deps.js'
-import { ff } from './file_fetcher.js'
-import { protocol } from './helpers.js'
-import { Cache } from './mod.js'
+import { fetchFile } from './file_fetcher.js'
+import { directory } from './cache.js'
 
 export interface Policy {
   maxAge: number
@@ -89,7 +88,7 @@ export class FileWrapper {
   }
 
   async fetch(): Promise<File> {
-    const meta = await ff(this.url, this.path)
+    const meta = await fetchFile(this.url, this.path)
     await metasave(meta, this.url, this.ns)
     return {
       ...this,
@@ -105,10 +104,8 @@ export class FileWrapper {
       const file = await this.read()
       if (!this.policy) return file
       if (checkPolicy(file, this.policy)) return file
-      return await this.fetch()
-    } else {
-      return await this.fetch()
     }
+    return await this.fetch()
   }
 }
 
@@ -118,9 +115,9 @@ function hash(url: URL) {
 }
 
 function path(url: URL, ns?: string) {
-  let path = [Cache.directory()]
+  let path = [directory()]
   if (ns) path.push(ns)
-  path = path.concat([protocol(url.protocol), url.hostname, hash(url)])
+  path = path.concat([url.protocol.slice(0, -1), url.hostname, hash(url)])
   return resolve(`${join(...path)}${extname(url.pathname)}`)
 }
 

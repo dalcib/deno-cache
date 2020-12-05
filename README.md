@@ -8,9 +8,9 @@ Cache library, compatible with deno [module caching](https://deno.land/manual/li
 
 ```typescript
 import {readFile} from 'fs/promises'
-import { Cache } from "https://deno.land/x/cache/mod.ts";
+import  {cache} from "https://deno.land/x/cache/mod.ts";
 
-let file = Cache.fetch("https://example.com/file.json");
+let file = await cache("https://example.com/file.json");
 
 const text = await fs.readFile(file.path, 'utf8');
 console.log(text);

@@ -1,27 +1,14 @@
-import { CacheError } from './cache.js'
-import { join, resolve } from './deps.js'
-
-export function protocol(protocol: string) {
-  return protocol.slice(0, -1)
-}
+import { join, resolve, toFileUrl, fromFileUrl } from './deps.js'
 
 export function toURL(url: string | URL): URL {
   if (typeof url === 'string') {
-    try {
-      try {
-        if (url.startsWith('http://') || url.startsWith('https://')) {
-          url = new URL(url)
-        } else {
-          url = resolveFileURL(url)
-        }
-      } catch {
-        url = resolveFileURL(url)
-      }
-    } catch (error) {
-      throw new CacheError(error.message)
+    if (url.startsWith('http:') || url.startsWith('https:') || url.startsWith('file:')) {
+      url = new URL(url)
+    } else {
+      url = toFileUrl(resolve(url))
     }
   } else if (url.protocol === 'file:') {
-    url = resolveFileURL(url)
+    url = toFileUrl(resolve(fromFileUrl(url)))
   }
 
   return url
