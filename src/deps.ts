@@ -13,7 +13,7 @@ export { createHash } from 'https://deno.land/std@0.71.0/hash/mod.ts' */
 export { resolve, join, extname, dirname } from 'path'
 export { createHash } from 'crypto'
 import * as fs from 'fs/promises'
-import { StatsBase } from 'fs'
+import { StatsBase, PathLike } from 'fs'
 import { pathToFileURL } from 'url'
 import { platform } from 'os'
 
@@ -46,7 +46,7 @@ export async function ensureDir(dir: string): Promise<void> {
   }
 }
 
-export async function exists(filePath: string): Promise<boolean> {
+/* export async function exists(filePath: string): Promise<boolean> {
   try {
     await fs.lstat(filePath)
     return true
@@ -56,6 +56,15 @@ export async function exists(filePath: string): Promise<boolean> {
       return false
     }
     throw err
+  }
+} */
+
+export async function exists(p: PathLike) {
+  try {
+    await fs.access(p)
+    return true
+  } catch {
+    return false
   }
 }
 

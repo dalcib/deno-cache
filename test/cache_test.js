@@ -85,3 +85,18 @@ test('cache | remote', async () => {
   await remote.remove(url)
   assert.ok(!(await remote.exists(url)))
 })
+
+test('DENO_DIR | remote', async () => {
+  const url = 'https://deno.land/std/version.ts'
+  Cache.configure({
+    directory: undefined,
+  })
+  const remote = Cache.namespace('remote')
+  await remote.purge()
+  assert.ok(!(await remote.exists(url)))
+  const file = await remote.cache(url)
+  assert.deepEqual(file.origin, Cache.Origin.FETCH)
+  assert.ok(await remote.exists(url))
+  await remote.remove(url)
+  assert.ok(!(await remote.exists(url)))
+})

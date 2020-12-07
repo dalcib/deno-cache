@@ -1,13 +1,13 @@
 {
   "name": "deno-cache",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "description": "A port of the cache module of Deno to be used with nodejs",
   "main": "lib/mod.js",
   "typings": "lib/index.d.ts",
   "type": "module",
   "scripts": {
     "test": "node test/run-test test",
-    "build": "esbuild --outdir=lib --platform=node src/*.ts",
+    "build": "esbuild src/*.ts --outdir=lib --platform=node",
     "types": "tsc ./src/mod.ts --declaration --emitDeclarationOnly --out lib/index.js --module amd --target es2015"
   },
   "repository": {

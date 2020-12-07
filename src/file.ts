@@ -1,5 +1,5 @@
 import * as fs from 'fs/promises'
-import { StatsBase } from 'fs'
+import { Stats } from 'fs'
 import { createHash, dirname, ensureDir, exists, join, resolve, extname } from './deps.js'
 import { fetchFile } from './file_fetcher.js'
 import { directory } from './cache.js'
@@ -37,7 +37,7 @@ interface IFile {
   path: string
   metapath: string
   meta: Metadata
-  lstat: StatsBase<number> //Deno.FileInfo
+  lstat: Stats //Deno.FileInfo
   origin: Origin
 
   policy?: Policy
@@ -133,5 +133,5 @@ async function metasave(meta: Metadata, url: URL, ns?: string): Promise<void> {
 async function metaread(url: URL, ns?: string): Promise<Metadata> {
   //const metadata = await Deno.readTextFile(metapath(url, ns))
   const metadata = await fs.readFile(metapath(url, ns), 'utf8')
-  return JSON.parse(metadata) as Metadata
+  return JSON.parse(metadata) //as Metadata
 }
