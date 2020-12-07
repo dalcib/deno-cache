@@ -118,7 +118,7 @@ function path(url: URL, ns?: string) {
   let path = [directory()]
   if (ns) path.push(ns)
   path = path.concat([url.protocol.slice(0, -1), url.hostname, hash(url)])
-  return resolve(`${join(...path)}${extname(url.pathname)}`)
+  return resolve(`${join(...path)}`) //${extname(url.pathname)}`)
 }
 
 function metapath(url: URL, ns?: string) {
