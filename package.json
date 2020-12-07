@@ -27,5 +27,9 @@
   },
   "devDependencies": {
     "esbuild": "^0.7.17"
-  }
+  },
+  "files": [
+    "lib",
+    "test"
+  ]
 }
