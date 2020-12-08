@@ -8,7 +8,7 @@ Cache library, compatible with deno [module caching](https://deno.land/manual/li
 
 ```typescript
 import {readFile} from 'fs/promises'
-import  {cache} from "https://deno.land/x/cache/mod.ts";
+import  {cache} from "deno-cache";
 
 let file = await cache("https://example.com/file.json");
 
@@ -16,4 +16,42 @@ const text = await fs.readFile(file.path, 'utf8');
 console.log(text);
 ```
 
+or
+
+
+```typescript
+import {readFile} from 'fs/promises'
+import  * as Cache from "deno-cache";
+
+const url = 'https://example.com/file.json'
+
+Cache.configure({
+  directory: 'cache',
+})
+
+const deps = Cache.namespace('deps')
+
+await deps.purge()
+console.log(await deps.exists(url)) //false
+
+const file = await deps.cache(url)
+console.log(file)
+/* {
+  url: URL {...}
+  policy: undefined,
+  ns: 'deps',
+  hash: 'cdb5afb638e1edad8d0b947130a614930b0ec51ada5294dcedf120ad1518692f',
+  path: './cache/remote/https/example.com/cdb5afb638e1edad8d0b947130a614930b0ec51ada5294dcedf120ad1518692f',       
+  metapath: './cache/remote/https/example.com/cdb5afb638e1edad8d0b947130a614930b0ec51ada5294dcedf120ad1518692f.metadata.json',
+  origin: 'fetch'
+  lstat: Stats {...}
+}*/
+
+console.log(await deps.exists(url)) //true
+await deps.remove(abs)
+console.log(await deps.exists(url)) //false
+
+const text = await fs.readFile(file.path, 'utf8');
+console.log(text);
+```
   

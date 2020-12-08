@@ -28,7 +28,7 @@ async function protocolHttp(url: URL, dest: string): Promise<Metadata> {
   //await Deno.writeFile(dest, new Uint8Array(source))
   await fs.writeFile(dest, new Uint8Array(source))
 
-  console.log('\x1b[32mDownload\x1b[0m', url)
+  console.log('\x1b[32mDownload\x1b[0m', url.toString())
 
   const headers: { [key: string]: string } = {}
   for (const [key, value] of download.headers) {
