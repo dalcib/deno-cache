@@ -1,6 +1,6 @@
 {
   "name": "deno-cache",
-  "version": "0.2.10",
+  "version": "0.2.11",
   "description": "A port of the cache module of Deno to be used with nodejs",
   "main": "lib/mod.js",
   "typings": "lib/index.d.ts",
