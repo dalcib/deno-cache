@@ -1,6 +1,6 @@
 {
   "name": "deno-cache",
-  "version": "0.2.11",
+  "version": "0.2.12",
   "description": "A port of the cache module of Deno to be used with nodejs",
   "main": "lib/mod.js",
   "typings": "lib/index.d.ts",
@@ -14,7 +14,10 @@
     "type": "git",
     "url": "git+https://github.com/dalcib/deno-cache.git"
   },
-  "keywords": [],
+  "keywords": [
+    "deno",
+    "cache"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/dalcib/deno-cache/issues"

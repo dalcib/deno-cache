@@ -23,35 +23,32 @@ or
 import {readFile} from 'fs/promises'
 import  * as Cache from "deno-cache";
 
-const url = 'https://example.com/file.json'
+const url = 'https://example.com/file.js'
 
 Cache.configure({
   directory: 'cache',
 })
-
 const deps = Cache.namespace('deps')
 
-await deps.purge()
 console.log(await deps.exists(url)) //false
 
 const file = await deps.cache(url)
+
+console.log(await deps.exists(url)) //true
+
 console.log(file)
 /* {
   url: URL {...}
   policy: undefined,
   ns: 'deps',
   hash: 'cdb5afb638e1edad8d0b947130a614930b0ec51ada5294dcedf120ad1518692f',
-  path: './cache/remote/https/example.com/cdb5afb638e1edad8d0b947130a614930b0ec51ada5294dcedf120ad1518692f',       
-  metapath: './cache/remote/https/example.com/cdb5afb638e1edad8d0b947130a614930b0ec51ada5294dcedf120ad1518692f.metadata.json',
+  path: './cache/deps/https/example.com/cdb5afb638e1edad8d0b947130a614930b0ec51ada5294dcedf120ad1518692f',       
+  metapath: './cache/deps/https/example.com/cdb5afb638e1edad8d0b947130a614930b0ec51ada5294dcedf120ad1518692f.metadata.json',
   origin: 'fetch'
   lstat: Stats {...}
 }*/
 
-console.log(await deps.exists(url)) //true
 await deps.remove(abs)
 console.log(await deps.exists(url)) //false
-
-const text = await fs.readFile(file.path, 'utf8');
-console.log(text);
 ```
   
